@@ -1,2 +1,2 @@
-def parse_script():
+def parse_script(scr_path):
     pass
