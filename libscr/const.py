@@ -1,0 +1,18 @@
+__all__ = [
+
+    "INT_SIZE",
+    "FUNCTION_ENTRY_LEN",
+    "FUNCTION_NAME_LEN",
+    "FUNCTION_DEF_LEN",
+    "CHAR_PREFIX_LEN",
+]
+
+import struct
+
+INT_SIZE = struct.calcsize("I")
+
+FUNCTION_ENTRY_LEN = 36
+FUNCTION_NAME_LEN = 32
+FUNCTION_DEF_LEN = 34
+
+CHAR_PREFIX_LEN = 16
