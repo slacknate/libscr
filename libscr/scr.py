@@ -8,7 +8,7 @@ def _parse_header(scr_contents):
     """
     ???.
     """
-    functions = {}
+    functions = []
 
     num_functions = struct.unpack_from("<I", scr_contents)[0]
     scr_contents = scr_contents[INT_SIZE:]
@@ -20,7 +20,7 @@ def _parse_header(scr_contents):
         function_name = entry[:FUNCTION_NAME_LEN].strip(b"\x00").decode("UTF-8")
         function_data = entry[FUNCTION_NAME_LEN:]
 
-        functions[function_name] = function_data
+        functions.append((function_name, function_data))
 
     if len(functions) != num_functions:
         raise ValueError("Function count mismatch!")
