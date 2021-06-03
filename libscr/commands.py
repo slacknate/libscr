@@ -146,21 +146,25 @@ CMD_MAP = {
     22: {
         
         "size": 32,
+        "format": "32s",
         "name": "<unknown>"
     },
     23: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     24: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     25: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     26: {
@@ -196,6 +200,7 @@ CMD_MAP = {
     32: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     35: {
@@ -255,6 +260,7 @@ CMD_MAP = {
     45: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     46: {
@@ -266,11 +272,13 @@ CMD_MAP = {
     47: {
         
         "size": 28,
+        "format": "28s",
         "name": "<unknown>"
     },
     48: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     49: {
@@ -336,6 +344,7 @@ CMD_MAP = {
     59: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     60: {
@@ -353,11 +362,13 @@ CMD_MAP = {
     62: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     63: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     64: {
@@ -375,16 +386,19 @@ CMD_MAP = {
     66: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     67: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     68: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     69: {
@@ -396,6 +410,7 @@ CMD_MAP = {
     70: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     103: {
@@ -1067,16 +1082,19 @@ CMD_MAP = {
     1112: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     1114: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     1116: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     2000: {
@@ -1214,6 +1232,7 @@ CMD_MAP = {
     2023: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     2034: {
@@ -1423,16 +1442,19 @@ CMD_MAP = {
     2070: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     2071: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     2072: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     2073: {
@@ -1774,6 +1796,7 @@ CMD_MAP = {
     3060: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     3061: {
@@ -1821,6 +1844,7 @@ CMD_MAP = {
     3068: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     3069: {
@@ -1844,21 +1868,25 @@ CMD_MAP = {
     3072: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     3073: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     3074: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     3075: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     3076: {
@@ -1906,11 +1934,13 @@ CMD_MAP = {
     4003: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     4004: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     4006: {
@@ -1976,6 +2006,7 @@ CMD_MAP = {
     4016: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     4017: {
@@ -1987,6 +2018,7 @@ CMD_MAP = {
     4018: {
         
         "size": 48,
+        "format": "48s",
         "name": "<unknown>"
     },
     4019: {
@@ -2004,6 +2036,7 @@ CMD_MAP = {
     4021: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     4022: {
@@ -2039,6 +2072,7 @@ CMD_MAP = {
     4045: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     4046: {
@@ -2116,6 +2150,7 @@ CMD_MAP = {
     5001: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     5003: {
@@ -2187,6 +2222,7 @@ CMD_MAP = {
     7007: {
         
         "size": 80,
+        "format": "80s",
         "name": "<unknown>"
     },
     7008: {
@@ -2348,36 +2384,43 @@ CMD_MAP = {
     9007: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     9008: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     9009: {
         
         "size": 84,
+        "format": "84s",
         "name": "<unknown>"
     },
     9010: {
         
         "size": 84,
+        "format": "84s",
         "name": "<unknown>"
     },
     9011: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     9012: {
         
         "size": 28,
+        "format": "28s",
         "name": "<unknown>"
     },
     9013: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     9015: {
@@ -3109,6 +3152,7 @@ CMD_MAP = {
     11032: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     11033: {
@@ -3210,11 +3254,13 @@ CMD_MAP = {
     11050: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     11051: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     11052: {
@@ -3256,6 +3302,7 @@ CMD_MAP = {
     11058: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     11059: {
@@ -3351,6 +3398,7 @@ CMD_MAP = {
     11074: {
         
         "size": 28,
+        "format": "28s",
         "name": "<unknown>"
     },
     11075: {
@@ -3554,11 +3602,13 @@ CMD_MAP = {
     11108: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     11109: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     11110: {
@@ -3684,6 +3734,7 @@ CMD_MAP = {
     12019: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     12020: {
@@ -3761,6 +3812,7 @@ CMD_MAP = {
     12032: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     12033: {
@@ -3814,6 +3866,7 @@ CMD_MAP = {
     12041: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     12042: {
@@ -3921,6 +3974,7 @@ CMD_MAP = {
     12059: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     12060: {
@@ -4154,6 +4208,7 @@ CMD_MAP = {
     13040: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     13041: {
@@ -4291,6 +4346,7 @@ CMD_MAP = {
     14017: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     14018: {
@@ -4374,6 +4430,7 @@ CMD_MAP = {
     14035: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     14043: {
@@ -4385,6 +4442,7 @@ CMD_MAP = {
     14044: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     14045: {
@@ -4535,6 +4593,7 @@ CMD_MAP = {
     14086: {
         
         "size": 32,
+        "format": "32s",
         "name": "<unknown>"
     },
     14087: {
@@ -4576,6 +4635,7 @@ CMD_MAP = {
     14094: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     15000: {
@@ -4707,6 +4767,7 @@ CMD_MAP = {
     15022: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     15023: {
@@ -4724,6 +4785,7 @@ CMD_MAP = {
     15025: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     15026: {
@@ -4741,11 +4803,13 @@ CMD_MAP = {
     16000: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     16001: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     17000: {
@@ -4877,26 +4941,31 @@ CMD_MAP = {
     17021: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     17022: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     17023: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     17024: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     17025: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     18001: {
@@ -4908,6 +4977,7 @@ CMD_MAP = {
     18003: {
         
         "size": 128,
+        "format": "128s",
         "name": "<unknown>"
     },
     18004: {
@@ -5129,6 +5199,7 @@ CMD_MAP = {
     20011: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     21000: {
@@ -5188,6 +5259,7 @@ CMD_MAP = {
     21009: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     21010: {
@@ -5205,11 +5277,13 @@ CMD_MAP = {
     21012: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     21013: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     21014: {
@@ -5221,6 +5295,7 @@ CMD_MAP = {
     21015: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     22000: {
@@ -5286,6 +5361,7 @@ CMD_MAP = {
     22019: {
         
         "size": 20,
+        "format": "20s",
         "name": "<unknown>"
     },
     22020: {
@@ -5597,6 +5673,7 @@ CMD_MAP = {
     23030: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     23031: {
@@ -5686,61 +5763,73 @@ CMD_MAP = {
     23045: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     23046: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     23047: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     23048: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     23049: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     23050: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     23051: {
         
         "size": 64,
+        "format": "64s",
         "name": "<unknown>"
     },
     23052: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     23053: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     23054: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     23055: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     23056: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     23057: {
@@ -5866,6 +5955,7 @@ CMD_MAP = {
     23082: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     23083: {
@@ -5907,6 +5997,7 @@ CMD_MAP = {
     23089: {
         
         "size": 32,
+        "format": "32s",
         "name": "<unknown>"
     },
     23090: {
@@ -6116,6 +6207,7 @@ CMD_MAP = {
     23125: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     23126: {
@@ -6163,6 +6255,7 @@ CMD_MAP = {
     23144: {
         
         "size": 44,
+        "format": "44s",
         "name": "<unknown>"
     },
     23145: {
@@ -6174,6 +6267,7 @@ CMD_MAP = {
     23146: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     23147: {
@@ -6227,6 +6321,7 @@ CMD_MAP = {
     23155: {
         
         "size": 40,
+        "format": "40s",
         "name": "<unknown>"
     },
     23156: {
@@ -6245,6 +6340,7 @@ CMD_MAP = {
 
         # Reference says this should be size 8 but that does not work for us??
         "size": 12,
+        "format": "12s",
         "name": "<unknown>"
     },
     23159: {
@@ -6358,16 +6454,19 @@ CMD_MAP = {
     23183: {
         
         "size": 44,
+        "format": "44s",
         "name": "<unknown>"
     },
     23184: {
         
         "size": 32,
+        "format": "32s",
         "name": "<unknown>"
     },
     23185: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     30000: {
@@ -6379,6 +6478,7 @@ CMD_MAP = {
     30001: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     30002: {
@@ -6396,6 +6496,7 @@ CMD_MAP = {
     30004: {
         
         "size": 12,
+        "format": "12s",
         "name": "<unknown>"
     },
     30005: {
@@ -6413,86 +6514,103 @@ CMD_MAP = {
     30007: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30008: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     30009: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30010: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30011: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30012: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30013: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30014: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30015: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30016: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30017: {
         
         "size": 4,
+        "format": "4s",
         "name": "<unknown>"
     },
     30018: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30019: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     30020: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30021: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30026: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30027: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30028: {
@@ -6534,6 +6652,7 @@ CMD_MAP = {
     30034: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30035: {
@@ -6545,11 +6664,13 @@ CMD_MAP = {
     30036: {
         
         "size": 36,
+        "format": "36s",
         "name": "<unknown>"
     },
     30037: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30038: {
@@ -6573,6 +6694,7 @@ CMD_MAP = {
     30041: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30042: {
@@ -6590,6 +6712,7 @@ CMD_MAP = {
     30044: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30045: {
@@ -6619,11 +6742,13 @@ CMD_MAP = {
     30049: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     30050: {
         
         "size": 24,
+        "format": "24s",
         "name": "<unknown>"
     },
     30051: {
@@ -6653,31 +6778,37 @@ CMD_MAP = {
     30055: {
         
         "size": 12,
+        "format": "12s",
         "name": "<unknown>"
     },
     30056: {
         
         "size": 12,
+        "format": "12s",
         "name": "<unknown>"
     },
     30057: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30058: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30059: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30060: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     30061: {
@@ -6737,16 +6868,19 @@ CMD_MAP = {
     30070: {
         
         "size": 32,
+        "format": "32s",
         "name": "<unknown>"
     },
     30071: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30072: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30073: {
@@ -6776,6 +6910,7 @@ CMD_MAP = {
     30077: {
         
         "size": 8,
+        "format": "8s",
         "name": "<unknown>"
     },
     30078: {
@@ -6793,11 +6928,13 @@ CMD_MAP = {
     30080: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30081: {
         
         "size": 0,
+        "format": "",
         "name": "<unknown>"
     },
     30082: {
@@ -6809,6 +6946,7 @@ CMD_MAP = {
     30083: {
         
         "size": 16,
+        "format": "16s",
         "name": "<unknown>"
     },
     30084: {
@@ -6883,10 +7021,7 @@ def get_command(scr_data):
 
     size = command_info["size"]
 
-    command_data = scr_data[:size]
+    command_args = scr_data[:size]
     scr_data = scr_data[size:]
 
-    # TODO: call struct.unpack on the command data using the defined format. also eventually remove this print xD
-    print(f"{command_id} - {command_info['name']} - {command_data}")
-
-    return command_id, command_data, scr_data
+    return command_id, command_info, command_args, scr_data
