@@ -8,4 +8,5 @@ setup(
     url="https://github.com/slacknate/libscr",
     description="A library for parsing and building BlazBlue script data.",
     packages=find_packages(include=["libscr", "libscr.*"]),
+    install_requires=["astor==0.8.1"]
 )
