@@ -7008,7 +7008,9 @@ CMD_MAP = {
 
 def get_command(scr_data):
     """
-    ???.
+    Get the next command from the script.
+    We return the command ID, information from the command map,
+    the arguments passed to the command, and remaining script data.
     """
     command_id = struct.unpack_from("<I", scr_data)[0]
     scr_data = scr_data[INT_SIZE:]
