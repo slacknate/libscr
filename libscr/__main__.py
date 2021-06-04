@@ -17,8 +17,8 @@ def main():
     parser = argparse.ArgumentParser("scr")
     subparsers = parser.add_subparsers(title="commands")
 
-    topng = subparsers.add_parser("readscr")
-    topng.add_argument(dest="scr_path", type=abs_path, help="Script bin file input path.")
+    topy = subparsers.add_parser("topy")
+    topy.add_argument(dest="scr_path", type=abs_path, help="Script bin file input path.")
 
     args, _ = parser.parse_known_args()
 
