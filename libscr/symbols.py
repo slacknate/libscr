@@ -6,6 +6,34 @@ def state(func):
     return func
 
 
+def return_val():
+    pass
+
+
+def frame_counter():
+    pass
+
+
+def is_in_overdrive():
+    pass
+
+
+def is_in_overdrive_2():
+    pass
+
+
+def is_in_overdrive_3():
+    pass
+
+
+def is_player2():
+    pass
+
+
+def is_unlimited_character():
+    pass
+
+
 def command_13(*_):
     pass
 
