@@ -9,6 +9,26 @@ import astor
 from .commands import *
 from .const import *
 
+CONDITION_CHECKS = {
+
+    0: "return_val",
+    18: "frame_counter",
+    47: "is_in_overdrive",
+    54: "is_in_overdrive_2",
+    106: "is_in_overdrive_3",
+    91: "is_player2",
+    112: "is_unlimited_character"
+}
+
+UPON_CONDITIONS = {
+
+    0: "immediate",
+    1: "state_end",
+    2: "landing",
+    3: "clear_or_exit",
+    10: "on_hit_or_block",
+}
+
 
 @contextlib.contextmanager
 def output_script(py_output):
@@ -76,7 +96,8 @@ def _parse_tokens(tokens):
     Parse the script tokens into a Python AST so we can later
     attempt to edit the script in as human-readable a form as possible.
     """
-    root_node = ast.Module(body=[])
+    root_node = ast.Module(body=[ast.ImportFrom("libscr.symbols", [ast.Name("*")], 0)])
+
     ast_stack = collections.deque()
     ast_stack.append(root_node.body)
 
@@ -115,10 +136,28 @@ def _parse_tokens(tokens):
             ifnode = ast_stack[-1][-1]
             ast_stack.append(ifnode.orelse)
 
+        elif command_id in (18,):  # FIXME
+            # cond = CONDITION_CHECKS.get(command_args[1], f"unknown_{command_args[1]}")
+            # if_expr = ast.Call(
+            #
+            #     ast.Name(cond),
+            #     [],
+            #     []
+            # )
+            # if_body = ast.Call(
+            #
+            #     ast.Name(id="_gotolabel"),
+            #     [ast.Num(command_args[0])],
+            #     []
+            # )
+            # ast_stack[-1].append(ast.If(if_expr, [if_body], []))
+            pass
+
         elif command_id in (15,):
+            upon_type = UPON_CONDITIONS.get(command_args[0], f"unknown_{command_args[0]}")
             func_def = ast.FunctionDef(
 
-                command_args[0],
+                "upon_" + upon_type,
                 ast.arguments([], [], None, None, [], None, []),
                 [],
                 []
@@ -128,10 +167,27 @@ def _parse_tokens(tokens):
 
         elif command_id in (1, 5, 9, 16, 55, 57):
             node_body = ast_stack.pop()
-
             # If any node that features an indented code block has an empty body we should populate it with a `pass`.
-            if command_id in (1, 5, 9, 55) and node_body == []:
+            if not node_body:
                 node_body.append(ast.Pass())
+
+        elif command_id in (40,):  # TODO
+            pass
+
+        elif command_id in (41,):  # TODO
+            pass
+
+        elif command_id in (49,):  # TODO
+            pass
+
+        elif command_info["name"].startswith("command_"):
+            func_call = ast.Call(
+
+                ast.Name(command_info["name"]),
+                [ast.Constant(arg) for arg in command_args],
+                []
+            )
+            ast_stack[-1].append(func_call)
 
     return root_node
 
