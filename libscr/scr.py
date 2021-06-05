@@ -15,8 +15,8 @@ CONDITION_CHECKS = {
     18: "frame_counter",
     47: "is_in_overdrive",
     54: "is_in_overdrive_2",
-    106: "is_in_overdrive_3",
     91: "is_player2",
+    106: "is_in_overdrive_3",
     112: "is_unlimited_character"
 }
 
@@ -136,10 +136,15 @@ def _parse_tokens(tokens):
             ast_stack[-1].append(func_def)
             ast_stack.append(func_def.body)
 
-        elif command_id in (4, 54):  # FIXME - not correctly implemented, also cmd ID 54 is "if not"
+        elif command_id in (4, 54):
+            cond = CONDITION_CHECKS.get(command_args[1], f"unknown_{command_args[1]}")
+            # Command ID 54 is "If Not" so we invert the boolean result of the condition.
+            if command_id in (54,):
+                cond = "not " + cond
+
             if_statement = ast.If(
 
-                ast.Name(id=str(command_args[1])),
+                ast.Name(id=cond),
                 [],
                 []
             )
@@ -150,22 +155,9 @@ def _parse_tokens(tokens):
             ifnode = ast_stack[-1][-1]
             ast_stack.append(ifnode.orelse)
 
-        elif command_id in (18,):  # FIXME
-            # cond = CONDITION_CHECKS.get(command_args[1], f"unknown_{command_args[1]}")
-            # if_expr = ast.Call(
-            #
-            #     ast.Name(cond),
-            #     [],
-            #     []
-            # )
-            # if_body = ast.Call(
-            #
-            #     ast.Name(id="_gotolabel"),
-            #     [ast.Num(command_args[0])],
-            #     []
-            # )
-            # ast_stack[-1].append(ast.If(if_expr, [if_body], []))
-            pass
+        elif command_id in (18,):
+            func_call = make_func_call("gotolabel_cond", command_args, statement=True)
+            ast_stack[-1].append(func_call)
 
         elif command_id in (15,):
             upon_type = UPON_CONDITIONS.get(command_args[0], f"unknown_{command_args[0]}")
@@ -195,12 +187,11 @@ def _parse_tokens(tokens):
             pass
 
         elif command_info["name"].startswith("command_"):
-            func_call = ast.Call(
+            func_call = make_func_call(command_info["name"], command_args, statement=True)
+            ast_stack[-1].append(func_call)
 
-                ast.Name(command_info["name"]),
-                [ast.Constant(arg) for arg in command_args],
-                []
-            )
+        else:
+            func_call = make_func_call(command_info["name"], command_args, statement=True)
             ast_stack[-1].append(func_call)
 
     return root_node
