@@ -47,6 +47,20 @@ def output_script(py_output):
         raise TypeError(f"Unsupported output script type {py_output}!")
 
 
+def make_func_call(name, args, statement: bool):
+    """
+    Apparently ast.Expr and ast.Expression are used for different things.
+    We use ast.Expr for an expressiong statement, and ast.Expression for other
+    expressions, like the condition of an `if` statement.
+    The ast.Call class exists but its an ast.expr which is something else?
+    And it doesn't seem to work right with astor? Why is this is so weird??
+    """
+    args_str = ", ".join([repr(arg) for arg in args])
+    expression_value = ast.Name(id=f"{name}({args_str})")
+    expr_cls = ast.Expr if statement else ast.Expression
+    return expr_cls(expression_value)
+
+
 def _parse_header(scr_contents):
     """
     Parse the header of the script. The header contains a function count and a number of
