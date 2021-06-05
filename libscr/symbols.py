@@ -1,9 +1,5 @@
-def subroutine(func):
-    return func
-
-
-def state(func):
-    return func
+async def yield_control():
+    pass
 
 
 def return_val():

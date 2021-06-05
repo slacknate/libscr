@@ -47,7 +47,7 @@ def output_script(py_output):
         raise TypeError(f"Unsupported output script type {py_output}!")
 
 
-def make_func_call(name, args, statement: bool):
+def make_func_call(name, args, statement: bool, aio: bool):
     """
     Apparently ast.Expr and ast.Expression are used for different things.
     We use ast.Expr for an expressiong statement, and ast.Expression for other
@@ -56,7 +56,11 @@ def make_func_call(name, args, statement: bool):
     And it doesn't seem to work right with astor? Why is this is so weird??
     """
     args_str = ", ".join([repr(arg) for arg in args])
-    expression_value = ast.Name(id=f"{name}({args_str})")
+    expr_str = f"{name}({args_str})"
+    if aio:
+        expr_str = "await " + expr_str
+
+    expression_value = ast.Name(id=expr_str)
     expr_cls = ast.Expr if statement else ast.Expression
     return expr_cls(expression_value)
 
@@ -125,16 +129,20 @@ def _parse_tokens(tokens):
         command_args = struct.unpack(fmt, command_args)
 
         if command_id in (0, 8):
-            func_id = "state" if command_id == 0 else "subroutine"
-            func_def = ast.FunctionDef(
+            func_type_cls = ast.AsyncFunctionDef if command_id == 0 else ast.FunctionDef
+            func_def = func_type_cls(
 
                 command_args[0].strip(b"\x00").decode("UTF-8"),
                 ast.arguments([], [], None, None, [], None, []),
                 [],
-                [ast.Name(id=func_id)]
+                []
             )
             ast_stack[-1].append(func_def)
             ast_stack.append(func_def.body)
+
+        elif command_id in (3,):
+            await_stmt = make_func_call(command_info["name"], command_args, statement=True, aio=True)
+            ast_stack[-1].append(await_stmt)
 
         elif command_id in (4, 54):
             cond = CONDITION_CHECKS.get(command_args[1], f"unknown_{command_args[1]}")
@@ -156,7 +164,7 @@ def _parse_tokens(tokens):
             ast_stack.append(ifnode.orelse)
 
         elif command_id in (18,):
-            func_call = make_func_call("gotolabel_cond", command_args, statement=True)
+            func_call = make_func_call("gotolabel_cond", command_args, statement=True, aio=False)
             ast_stack[-1].append(func_call)
 
         elif command_id in (15,):
@@ -187,11 +195,11 @@ def _parse_tokens(tokens):
             pass
 
         elif command_info["name"].startswith("command_"):
-            func_call = make_func_call(command_info["name"], command_args, statement=True)
+            func_call = make_func_call(command_info["name"], command_args, statement=True, aio=False)
             ast_stack[-1].append(func_call)
 
         else:
-            func_call = make_func_call(command_info["name"], command_args, statement=True)
+            func_call = make_func_call(command_info["name"], command_args, statement=True, aio=False)
             ast_stack[-1].append(func_call)
 
     return root_node

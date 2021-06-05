@@ -33,7 +33,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "loopRest",
+        "name": "yield_control",
     },
     4: {
 
