@@ -15,13 +15,13 @@ CMD_MAP = {
 
         "size": 32,
         "format": "<32s",
-        "name": "startState",
+        "name": "start_state",
     },
     1: {
 
         "size": 0,
         "format": "<",
-        "name": "endState",
+        "name": "end_state",
     },
     2: {
 
@@ -45,7 +45,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "endIf",
+        "name": "end_if",
     },
     6: {
 
@@ -57,37 +57,37 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "gotoLabel",
+        "name": "goto_label",
     },
     8: {
 
         "size": 32,
         "format": "<32s",
-        "name": "startSubroutine",
+        "name": "start_subroutine",
     },
     9: {
 
         "size": 0,
         "format": "<",
-        "name": "endSubroutine",
+        "name": "end_subroutine",
     },
     10: {
 
         "size": 32,
         "format": "<32s",
-        "name": "callSubroutine",
+        "name": "call_subroutine",
     },
     11: {
 
         "size": 4,
         "format": "<i",
-        "name": "sendToLabel",
+        "name": "send_to_label",
     },
     12: {
 
         "size": 0,
         "format": "<",
-        "name": "ExitState",
+        "name": "exit_state",
     },
     13: {
 
@@ -111,13 +111,13 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "endUpon",
+        "name": "end_upon",
     },
     17: {
 
         "size": 4,
         "format": "<i",
-        "name": "clearUponHandler",
+        "name": "clear_upon_handler",
     },
     18: {
 
@@ -141,7 +141,7 @@ CMD_MAP = {
 
         "size": 32,
         "format": "<32s",
-        "name": "enterState",
+        "name": "enter_state",
     },
     22: {
 
@@ -183,13 +183,13 @@ CMD_MAP = {
 
         "size": 8,
         "format": "<ii",
-        "name": "sendToLabelUpon",
+        "name": "send_to_label_upon",
     },
     30: {
 
         "size": 8,
         "format": "<ii",
-        "name": "loopRelated",
+        "name": "loop_related",
     },
     31: {
 
@@ -225,7 +225,7 @@ CMD_MAP = {
 
         "size": 12,
         "format": "<iii",
-        "name": "random_",
+        "name": "random",
     },
     40: {
 
@@ -237,7 +237,7 @@ CMD_MAP = {
 
         "size": 16,
         "format": "<iiii",
-        "name": "StoreValue",
+        "name": "store_value",
     },
     42: {
 
@@ -249,7 +249,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "CheckInput",
+        "name": "check_input",
     },
     44: {
 
@@ -285,7 +285,7 @@ CMD_MAP = {
 
         "size": 20,
         "format": "<iiiii",
-        "name": "ModifyVar_",
+        "name": "modify_var",
     },
     50: {
 
@@ -315,13 +315,13 @@ CMD_MAP = {
 
         "size": 8,
         "format": "<ii",
-        "name": "ifNot",
+        "name": "if_not",
     },
     55: {
 
         "size": 0,
         "format": "<",
-        "name": "endIfNot",
+        "name": "end_if_not",
     },
     56: {
 
@@ -333,7 +333,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "endElse",
+        "name": "end_else",
     },
     58: {
 
@@ -405,7 +405,7 @@ CMD_MAP = {
 
         "size": 16,
         "format": "<16s",
-        "name": "PartnerChar",
+        "name": "partner_char",
     },
     70: {
 
@@ -435,7 +435,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "teleportRelativeX",
+        "name": "teleport_relative_x",
     },
     1003: {
 
@@ -459,7 +459,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "teleportRelativeY",
+        "name": "teleport_relative_y",
     },
     1007: {
 
@@ -501,7 +501,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "physicsXImpulse",
+        "name": "physics_x_impulse",
     },
     1014: {
 
@@ -543,7 +543,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "physicsYImpulse",
+        "name": "physics_y_impulse",
     },
     1021: {
 
@@ -567,7 +567,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "YAccel",
+        "name": "y_accel",
     },
     1025: {
 
@@ -633,7 +633,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "setGravity",
+        "name": "set_gravity",
     },
     1036: {
 
@@ -1101,7 +1101,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "RefreshMultihit",
+        "name": "refresh_multihit",
     },
     2001: {
 
@@ -1113,7 +1113,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "StartMultihit",
+        "name": "start_multihit",
     },
     2003: {
 
@@ -1197,7 +1197,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "EnableCollision",
+        "name": "enable_collision",
     },
     2018: {
 
@@ -1377,7 +1377,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "ConsumeSuperMeter",
+        "name": "consume_super_meter",
     },
     2059: {
 
@@ -1389,7 +1389,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "Recovery",
+        "name": "recovery",
     },
     2061: {
 
@@ -1647,7 +1647,7 @@ CMD_MAP = {
 
         "size": 8,
         "format": "<ii",
-        "name": "ScreenShake",
+        "name": "screen_shake",
     },
     3029: {
 
@@ -1917,19 +1917,19 @@ CMD_MAP = {
 
         "size": 36,
         "format": "<36s",
-        "name": "GFX_0",
+        "name": "gfx_0",
     },
     4001: {
 
         "size": 36,
         "format": "<36s",
-        "name": "GFX_1",
+        "name": "gfx_1",
     },
     4002: {
 
         "size": 32,
         "format": "<32s",
-        "name": "GFX_2",
+        "name": "gfx_2",
     },
     4003: {
 
@@ -2181,31 +2181,31 @@ CMD_MAP = {
 
         "size": 32,
         "format": "<32s",
-        "name": "SFX_0",
+        "name": "sfx_0",
     },
     7001: {
 
         "size": 16,
         "format": "<16s",
-        "name": "SFX_1",
+        "name": "sfx_1",
     },
     7002: {
 
         "size": 32,
         "format": "<32s",
-        "name": "SFX_2",
+        "name": "sfx_2",
     },
     7003: {
 
         "size": 32,
         "format": "<32s",
-        "name": "SFX_3",
+        "name": "sfx_3",
     },
     7004: {
 
         "size": 16,
         "format": "<16s",
-        "name": "SFX_4",
+        "name": "sfx_4",
     },
     7005: {
 
@@ -2349,7 +2349,7 @@ CMD_MAP = {
 
         "size": 12,
         "format": "<iii",
-        "name": "SFX_FOOTSTEP_",
+        "name": "sfx_footstep",
     },
     9000: {
 
@@ -2367,13 +2367,13 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AttackLevel_",
+        "name": "attack_level",
     },
     9003: {
 
         "size": 4,
         "format": "<i",
-        "name": "Damage",
+        "name": "damage",
     },
     9004: {
 
@@ -2469,7 +2469,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirPushbackX",
+        "name": "air_pushback_x",
     },
     9071: {
 
@@ -2493,7 +2493,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirPushbackY",
+        "name": "air_pushback_y",
     },
     9083: {
 
@@ -2505,7 +2505,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "CounterHitAirPushbackY",
+        "name": "counter_hit_air_pushback_y",
     },
     9085: {
 
@@ -2517,7 +2517,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "YImpluseBeforeWallbounce",
+        "name": "y_impluse_before_wallbounce",
     },
     9095: {
 
@@ -2541,7 +2541,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "WallbounceReboundTime",
+        "name": "wallbounce_rebound_time",
     },
     9107: {
 
@@ -2661,7 +2661,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirUntechableTime",
+        "name": "air_untechable_time",
     },
     9167: {
 
@@ -2763,7 +2763,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "PushbackX",
+        "name": "pushback_x",
     },
     9215: {
 
@@ -2823,7 +2823,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "FreezeCount",
+        "name": "freeze_count",
     },
     9251: {
 
@@ -2847,7 +2847,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "FreezeDuration",
+        "name": "freeze_duration",
     },
     9263: {
 
@@ -2877,7 +2877,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AttackP1",
+        "name": "attack_p1",
     },
     9275: {
 
@@ -2901,7 +2901,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AttackP2",
+        "name": "attack_p2",
     },
     9287: {
 
@@ -2949,7 +2949,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "GroundedHitstunAnimation",
+        "name": "grounded_hitstun_animation",
     },
     9323: {
 
@@ -2973,7 +2973,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirHitstunAnimation",
+        "name": "air_hitstun_animation",
     },
     9335: {
 
@@ -3021,7 +3021,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirHitstunAfterWallbounce",
+        "name": "air_hitstun_after_wallbounce",
     },
     9359: {
 
@@ -3087,7 +3087,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "Hitstop",
+        "name": "hitstop",
     },
     11001: {
 
@@ -3147,7 +3147,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "ChipDamagePct",
+        "name": "chip_damage_pct",
     },
     11032: {
 
@@ -3159,7 +3159,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "ProjectileDurabilityLvl",
+        "name": "projectile_durability_lvl",
     },
     11034: {
 
@@ -3171,19 +3171,19 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "HitLow",
+        "name": "hit_low",
     },
     11036: {
 
         "size": 4,
         "format": "<i",
-        "name": "HitOverhead",
+        "name": "hit_overhead",
     },
     11037: {
 
         "size": 4,
         "format": "<i",
-        "name": "HitAirUnblockable",
+        "name": "hit_air_unblockable",
     },
     11038: {
 
@@ -3483,7 +3483,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "FatalCounter",
+        "name": "fatal_counter",
     },
     11089: {
 
@@ -3495,13 +3495,13 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "BonusProrationPct",
+        "name": "bonus_proration_pct",
     },
     11091: {
 
         "size": 4,
         "format": "<i",
-        "name": "MinimumDamagePct",
+        "name": "minimum_damage_pct",
     },
     11092: {
 
@@ -3621,43 +3621,43 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "WalkFSpeed",
+        "name": "walk_f_speed",
     },
     12001: {
 
         "size": 4,
         "format": "<i",
-        "name": "WalkBSpeed",
+        "name": "walk_b_speed",
     },
     12002: {
 
         "size": 4,
         "format": "<i",
-        "name": "DashFInitialVelocity",
+        "name": "dash_f_initial_velocity",
     },
     12003: {
 
         "size": 4,
         "format": "<i",
-        "name": "DashFAccel",
+        "name": "dash_f_accel",
     },
     12004: {
 
         "size": 4,
         "format": "<i",
-        "name": "DashFMaxVelocity",
+        "name": "dash_f_max_velocity",
     },
     12005: {
 
         "size": 4,
         "format": "<i",
-        "name": "JumpYVelocity",
+        "name": "jump_y_velocity",
     },
     12006: {
 
         "size": 4,
         "format": "<i",
-        "name": "SuperJumpYVelocity",
+        "name": "super_jump_y_velocity",
     },
     12007: {
 
@@ -3693,13 +3693,13 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "DoubleJumpCount",
+        "name": "double_jump_count",
     },
     12013: {
 
         "size": 4,
         "format": "<i",
-        "name": "AirDashCount",
+        "name": "air_dash_count",
     },
     12014: {
 
@@ -3711,7 +3711,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "Health",
+        "name": "health",
     },
     12016: {
 
@@ -3723,7 +3723,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "ComboRate",
+        "name": "combo_rate",
     },
     12018: {
 
@@ -3807,7 +3807,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "JumpStartup",
+        "name": "jump_startup",
     },
     12032: {
 
@@ -3831,13 +3831,13 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirBDashDuration",
+        "name": "air_b_dash_duration",
     },
     12036: {
 
         "size": 4,
         "format": "<i",
-        "name": "SuperFreezeDuration",
+        "name": "super_freeze_duration",
     },
     12037: {
 
@@ -3855,7 +3855,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "AirDashBSpeed",
+        "name": "air_dash_b_speed",
     },
     12040: {
 
@@ -3927,7 +3927,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "StarterRating",
+        "name": "starter_rating",
     },
     12052: {
 
@@ -3939,7 +3939,7 @@ CMD_MAP = {
 
         "size": 40,
         "format": "<10i",
-        "name": "OverdriveDuration",
+        "name": "overdrive_duration",
     },
     12054: {
 
@@ -4257,19 +4257,19 @@ CMD_MAP = {
 
         "size": 36,
         "format": "<32si",
-        "name": "Move_Register",
+        "name": "move_register",
     },
     14002: {
 
         "size": 0,
         "format": "<",
-        "name": "Move_EndRegister",
+        "name": "move_end_register",
     },
     14003: {
 
         "size": 4,
         "format": "<i",
-        "name": "Move_AirGround_",
+        "name": "move_air_ground",
     },
     14004: {
 
@@ -4323,7 +4323,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "Move_Input_",
+        "name": "move_input",
     },
     14013: {
 
@@ -4377,7 +4377,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "MoveMaxChainRepeat",
+        "name": "move_max_chain_repeat",
     },
     14023: {
 
@@ -4485,13 +4485,13 @@ CMD_MAP = {
 
         "size": 32,
         "format": "<32s",
-        "name": "WhiffCancel",
+        "name": "whiff_cancel",
     },
     14069: {
 
         "size": 32,
         "format": "<32s",
-        "name": "HitOrBlockCancel",
+        "name": "hit_or_block_cancel",
     },
     14070: {
 
@@ -4533,7 +4533,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "WhiffCancelEnable",
+        "name": "whiff_cancel_enable",
     },
     14077: {
 
@@ -4545,25 +4545,25 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "HitOrBlockJumpCancel",
+        "name": "hit_or_block_jump_cancel",
     },
     14079: {
 
         "size": 4,
         "format": "<i",
-        "name": "JumpCancel_",
+        "name": "jump_cancel",
     },
     14080: {
 
         "size": 32,
         "format": "<32s",
-        "name": "HitCancel",
+        "name": "hit_cancel",
     },
     14081: {
 
         "size": 4,
         "format": "<i",
-        "name": "HitJumpCancel",
+        "name": "hit_jump_cancel",
     },
     14082: {
 
@@ -4816,19 +4816,19 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_StandingNormal",
+        "name": "attack_defaults_standing_normal",
     },
     17001: {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_AirNormal",
+        "name": "attack_defaults_air_normal",
     },
     17002: {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_StandingSpecial",
+        "name": "attack_defaults_standing_special",
     },
     17003: {
 
@@ -4840,19 +4840,19 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_StandingDD",
+        "name": "attack_defaults_standing_d_d",
     },
     17005: {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_AirDD",
+        "name": "attack_defaults_air_d_d",
     },
     17006: {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_CrouchingNormal",
+        "name": "attack_defaults_crouching_normal",
     },
     17007: {
 
@@ -4918,7 +4918,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "AttackDefaults_Astral",
+        "name": "attack_defaults_astral",
     },
     17018: {
 
@@ -4930,13 +4930,13 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "ScriptEndGroundBOunce_",
+        "name": "script_end_ground_b_ounce",
     },
     17020: {
 
         "size": 0,
         "format": "<",
-        "name": "ScriptSameAttackComboNoSpecialCancel",
+        "name": "script_same_attack_combo_no_special_cancel",
     },
     17021: {
 
@@ -5344,13 +5344,13 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "setInvincible",
+        "name": "set_invincible",
     },
     22008: {
 
         "size": 4,
         "format": "<i",
-        "name": "setInvincibleFor",
+        "name": "set_invincible_for",
     },
     22009: {
 
@@ -5368,7 +5368,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "GuardPoint_",
+        "name": "guard_point",
     },
     22021: {
 
@@ -5656,7 +5656,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "DisableAttackRestOfMove",
+        "name": "disable_attack_rest_of_move",
     },
     23028: {
 
@@ -5752,7 +5752,7 @@ CMD_MAP = {
 
         "size": 12,
         "format": "<iii",
-        "name": "PhysicsPull",
+        "name": "physics_pull",
     },
     23044: {
 
@@ -6617,7 +6617,7 @@ CMD_MAP = {
 
         "size": 4,
         "format": "<i",
-        "name": "selfDamage",
+        "name": "self_damage",
     },
     30029: {
 
