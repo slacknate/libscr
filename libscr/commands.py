@@ -4573,6 +4573,7 @@ CMD_MAP = {
     },
     14083: {
 
+        # Reference says this should be size 4 but that does not work for us??
         "size": 32,
         "format": "<32s",
         "name": "command_14083",
@@ -6337,6 +6338,7 @@ CMD_MAP = {
     },
     23158: {
 
+        # Reference says this should be size 8 but that does not work for us??
         "size": 12,
         "format": "<12s",
         "name": "command_23158",
