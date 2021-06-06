@@ -30,6 +30,442 @@ def is_unlimited_character():
     pass
 
 
+def sprite(*_):
+    pass
+
+
+def label(*_):
+    pass
+
+
+def goto_label(*_):
+    pass
+
+
+def call_subroutine(*_):
+    pass
+
+
+def send_to_label(*_):
+    pass
+
+
+def exit_state(*_):
+    pass
+
+
+def clear_upon_handler(*_):
+    pass
+
+
+def goto_label_cond(*_):
+    pass
+
+
+def enter_state(*_):
+    pass
+
+
+def send_to_label_upon(*_):
+    pass
+
+
+def loop_related(*_):
+    pass
+
+
+def random(*_):
+    pass
+
+
+def store_value(*_):
+    pass
+
+
+def check_input(*_):
+    pass
+
+
+def modify_var(*_):
+    pass
+
+
+def partner_char(*_):
+    pass
+
+
+def teleport_relative_x(*_):
+    pass
+
+
+def teleport_relative_y(*_):
+    pass
+
+
+def physics_x_impulse(*_):
+    pass
+
+
+def physics_y_impulse(*_):
+    pass
+
+
+def y_accel(*_):
+    pass
+
+
+def set_gravity(*_):
+    pass
+
+
+def refresh_multihit(*_):
+    pass
+
+
+def start_multihit(*_):
+    pass
+
+
+def enable_collision(*_):
+    pass
+
+
+def consume_super_meter(*_):
+    pass
+
+
+def recovery(*_):
+    pass
+
+
+def screen_shake(*_):
+    pass
+
+
+def gfx_0(*_):
+    pass
+
+
+def gfx_1(*_):
+    pass
+
+
+def gfx_2(*_):
+    pass
+
+
+def sfx_0(*_):
+    pass
+
+
+def sfx_1(*_):
+    pass
+
+
+def sfx_2(*_):
+    pass
+
+
+def sfx_3(*_):
+    pass
+
+
+def sfx_4(*_):
+    pass
+
+
+def tag_voice(*_):
+    pass
+
+
+def sfx_footstep(*_):
+    pass
+
+
+def attack_level(*_):
+    pass
+
+
+def damage(*_):
+    pass
+
+
+def air_pushback_x(*_):
+    pass
+
+
+def air_pushback_y(*_):
+    pass
+
+
+def counter_hit_air_pushback_y(*_):
+    pass
+
+
+def y_impluse_before_wallbounce(*_):
+    pass
+
+
+def wallbounce_rebound_time(*_):
+    pass
+
+
+def hitstun(*_):
+    pass
+
+
+def air_untechable_time(*_):
+    pass
+
+
+def pushback_x(*_):
+    pass
+
+
+def freeze_count(*_):
+    pass
+
+
+def freeze_duration(*_):
+    pass
+
+
+def attack_p1(*_):
+    pass
+
+
+def attack_p2(*_):
+    pass
+
+
+def grounded_hitstun_animation(*_):
+    pass
+
+
+def air_hitstun_animation(*_):
+    pass
+
+
+def air_hitstun_after_wallbounce(*_):
+    pass
+
+
+def hitstop(*_):
+    pass
+
+
+def blockstun(*_):
+    pass
+
+
+def chip_damage_pct(*_):
+    pass
+
+
+def projectile_durability_lvl(*_):
+    pass
+
+
+def hit_low(*_):
+    pass
+
+
+def hit_overhead(*_):
+    pass
+
+
+def hit_air_unblockable(*_):
+    pass
+
+
+def fatal_counter(*_):
+    pass
+
+
+def bonus_proration_pct(*_):
+    pass
+
+
+def minimum_damage_pct(*_):
+    pass
+
+
+def walk_f_speed(*_):
+    pass
+
+
+def walk_b_speed(*_):
+    pass
+
+
+def dash_f_initial_velocity(*_):
+    pass
+
+
+def dash_f_accel(*_):
+    pass
+
+
+def dash_f_max_velocity(*_):
+    pass
+
+
+def jump_y_velocity(*_):
+    pass
+
+
+def super_jump_y_velocity(*_):
+    pass
+
+
+def double_jump_count(*_):
+    pass
+
+
+def air_dash_count(*_):
+    pass
+
+
+def health(*_):
+    pass
+
+
+def combo_rate(*_):
+    pass
+
+
+def jump_startup(*_):
+    pass
+
+
+def air_b_dash_duration(*_):
+    pass
+
+
+def super_freeze_duration(*_):
+    pass
+
+
+def air_dash_b_speed(*_):
+    pass
+
+
+def starter_rating(*_):
+    pass
+
+
+def overdrive_duration(*_):
+    pass
+
+
+def move_register(*_):
+    pass
+
+
+def move_end_register(*_):
+    pass
+
+
+def move_air_ground(*_):
+    pass
+
+
+def move_input(*_):
+    pass
+
+
+def move_max_chain_repeat(*_):
+    pass
+
+
+def whiff_cancel(*_):
+    pass
+
+
+def hit_or_block_cancel(*_):
+    pass
+
+
+def whiff_cancel_enable(*_):
+    pass
+
+
+def hit_or_block_jump_cancel(*_):
+    pass
+
+
+def jump_cancel(*_):
+    pass
+
+
+def hit_cancel(*_):
+    pass
+
+
+def hit_jump_cancel(*_):
+    pass
+
+
+def attack_defaults_standing_normal(*_):
+    pass
+
+
+def attack_defaults_air_normal(*_):
+    pass
+
+
+def attack_defaults_standing_special(*_):
+    pass
+
+
+def attack_defaults_standing_d_d(*_):
+    pass
+
+
+def attack_defaults_air_d_d(*_):
+    pass
+
+
+def attack_defaults_crouching_normal(*_):
+    pass
+
+
+def attack_defaults_astral(*_):
+    pass
+
+
+def script_end_ground_b_ounce(*_):
+    pass
+
+
+def script_same_attack_combo_no_special_cancel(*_):
+    pass
+
+
+def set_invincible(*_):
+    pass
+
+
+def set_invincible_for(*_):
+    pass
+
+
+def guard_point(*_):
+    pass
+
+
+def disable_attack_rest_of_move(*_):
+    pass
+
+
+def physics_pull(*_):
+    pass
+
+
+def self_damage(*_):
+    pass
+
+
 def command_13(*_):
     pass
 
