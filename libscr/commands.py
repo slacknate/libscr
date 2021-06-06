@@ -123,7 +123,7 @@ CMD_MAP = {
 
         "size": 12,
         "format": "<iii",
-        "name": "gotolabel_cond",
+        "name": "goto_label_cond",
     },
     19: {
 
