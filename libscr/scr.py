@@ -107,7 +107,7 @@ def bytes_contain_ascii(bytes_value):
 
 def bytes_to_str(bytes_value):
     """
-    Helper to strip of NULL characters for bytestrings that are names and return the decoded string.
+    Helper to strip off NULL characters for bytestrings that are names and return the decoded string.
     """
     return bytes_value.strip(b"\x00").decode("ascii")
 
