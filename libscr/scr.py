@@ -164,7 +164,7 @@ def _parse_tokens(tokens):
             ast_stack.append(ifnode.orelse)
 
         elif command_id in (18,):
-            func_call = make_func_call("gotolabel_cond", command_args, statement=True, aio=False)
+            func_call = make_func_call(command_info["name"], command_args, statement=True, aio=False)
             ast_stack[-1].append(func_call)
 
         elif command_id in (15,):
