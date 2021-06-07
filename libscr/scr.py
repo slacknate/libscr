@@ -12,6 +12,8 @@ from .const import *
 
 PRINTABLE_ASCII_RANGE = frozenset(range(20, 127))
 
+SLOT_TYPE_ID = 2
+
 INPUT_CODES = {
 
     INPUT_RELEASE_A: "INPUT_RELEASE_A",
@@ -77,18 +79,33 @@ MOVE_TYPES = {
     1541: "MOVE_TYPE_UNKNOWN_1541",
 }
 
-CONDITION_CHECKS = {
+OPERATOR_CODES = {
 
-    0: "return_val",
-    18: "frame_counter",
-    47: "is_in_overdrive",
-    54: "is_in_overdrive_2",
-    91: "is_player2",
-    106: "is_in_overdrive_3",
-    112: "is_unlimited_character"
+    0: ast.Add,
+    1: ast.Sub,
+    2: ast.Mult,
+    3: ast.Div,
+    9: ast.Eq,
+    10: ast.Gt,
+    11: ast.Lt,
+    12: ast.GtE,
+    13: ast.LtE,
+    15: ast.And,  # FIXME: this is def wrong
+    16: ast.Or,  # FIXME: this is def wrong
 }
 
-UPON_CONDITIONS = {
+SLOTS = {
+
+    0: "RETURN_VAL",
+    18: "FRAME_COUNTER",
+    47: "IS_IN_OVERDRIVE",
+    54: "IS_IN_OVERDRIVE_2",
+    91: "IS_PLAYER2",
+    106: "IS_IN_OVERDRIVE_3",
+    112: "IS_UNLIMITED_CHARACTER"
+}
+
+UPON = {
 
     0: "immediate",
     1: "state_end",
@@ -241,7 +258,7 @@ def _parse_tokens(tokens):
             ast_stack[-1].append(await_stmt)
 
         elif command_id in (4, 54):
-            cond = CONDITION_CHECKS.get(command_args[1], f"unknown_{command_args[1]}")
+            cond = SLOTS.get(command_args[1], f"SLOT_UNKNOWN_{command_args[1]}")
             # Command ID 54 is "If Not" so we invert the boolean result of the condition.
             if command_id in (54,):
                 cond = "not " + cond
@@ -265,7 +282,7 @@ def _parse_tokens(tokens):
             ast_stack[-1].append(func_call)
 
         elif command_id in (15,):
-            upon_type = UPON_CONDITIONS.get(command_args[0], f"unknown_{command_args[0]}")
+            upon_type = UPON.get(command_args[0], f"UNKNOWN_UPON_{command_args[0]}")
             func_def = ast.FunctionDef(
 
                 "upon_" + upon_type,
@@ -282,14 +299,74 @@ def _parse_tokens(tokens):
             if not node_body:
                 node_body.append(ast.Pass())
 
-        elif command_id in (40,):  # TODO
-            pass
+        elif command_id in (40,):
+            operator_code = command_args[0]
+            lval_type = command_args[1]
+            lval = command_args[2]
+            rval_type = command_args[3]
+            rval = command_args[4]
 
-        elif command_id in (41,):  # TODO
-            pass
+            if lval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(lval, f"SLOT_UNKNOWN_{lval}")
+                lval = ast.Name(slot_name)
+            else:
+                lval = ast.Num(lval)
 
-        elif command_id in (49,):  # TODO
-            pass
+            if rval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(rval, f"SLOT_UNKNOWN_{rval}")
+                rval = ast.Name(slot_name)
+            else:
+                rval = ast.Num(rval)
+
+            op_cls = OPERATOR_CODES[operator_code]
+
+            op_expr = ast.Expr(ast.Compare(lval, [op_cls()], [rval]))
+            ast_stack[-1].append(op_expr)
+
+        elif command_id in (41,):
+            lval_type = command_args[0]
+            lval = command_args[1]
+            rval_type = command_args[2]
+            rval = command_args[3]
+
+            if lval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(lval, f"SLOT_UNKNOWN_{lval}")
+                lval = ast.Name(slot_name)
+            else:
+                lval = ast.Num(lval)
+
+            if rval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(rval, f"SLOT_UNKNOWN_{rval}")
+                rval = ast.Name(slot_name)
+            else:
+                rval = ast.Num(rval)
+
+            assign_expr = ast.Assign([lval], rval)
+            ast_stack[-1].append(assign_expr)
+
+        elif command_id in (49,):
+            operator_code = command_args[0]
+            lval_type = command_args[1]
+            lval = command_args[2]
+            rval_type = command_args[3]
+            rval = command_args[4]
+
+            if lval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(lval, f"SLOT_UNKNOWN_{lval}")
+                lval = ast.Name(slot_name)
+            else:
+                lval = ast.Num(lval)
+
+            if rval_type == SLOT_TYPE_ID:
+                slot_name = SLOTS.get(rval, f"SLOT_UNKNOWN_{rval}")
+                rval = ast.Name(slot_name)
+            else:
+                rval = ast.Num(rval)
+
+            op_cls = OPERATOR_CODES[operator_code]
+
+            assign_expr = ast.Assign([lval], ast.BinOp(lval, op_cls(), rval))
+            ast_stack[-1].append(assign_expr)
 
         elif command_id in (14001,):
             move_name = command_args[0]
