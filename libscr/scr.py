@@ -10,7 +10,7 @@ from .symbols import *
 from .commands import *
 from .const import *
 
-PRINTABLE_ASCII_RANGE = frozenset(range(20, 127))
+ASCII_RANGE = frozenset(list(range(20, 127)) + [0])
 
 SLOT_TYPE_ID = 2
 
@@ -115,11 +115,12 @@ UPON = {
 }
 
 
-def bytes_contain_ascii(bytes_value):
+def is_ascii_str(bytes_value):
     """
     Helper to determine if a bytestring contains human readable text.
     """
-    return bool(set(bytes_value) & PRINTABLE_ASCII_RANGE)
+    non_ascii_bytes = set(bytes_value) - ASCII_RANGE
+    return not non_ascii_bytes
 
 
 def bytes_to_str(bytes_value):
@@ -215,7 +216,7 @@ def _unpack_command_args(fmt, command_args):
     command_args = list(struct.unpack(fmt, command_args))
 
     for i, arg in enumerate(command_args):
-        if isinstance(arg, bytes) and bytes_contain_ascii(arg):
+        if isinstance(arg, bytes) and is_ascii_str(arg):
             command_args[i] = bytes_to_str(arg)
 
     return command_args
