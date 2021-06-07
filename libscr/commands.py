@@ -1868,25 +1868,25 @@ CMD_MAP = {
     3072: {
 
         "size": 16,
-        "format": "<16s",
+        "format": "<iiii",
         "name": "command_3072",
     },
     3073: {
 
         "size": 16,
-        "format": "<16s",
+        "format": "<iiii",
         "name": "command_3073",
     },
     3074: {
 
         "size": 16,
-        "format": "<16s",
+        "format": "<iiii",
         "name": "command_3074",
     },
     3075: {
 
         "size": 16,
-        "format": "<16s",
+        "format": "<iiii",
         "name": "command_3075",
     },
     3076: {
@@ -1916,19 +1916,19 @@ CMD_MAP = {
     4000: {
 
         "size": 36,
-        "format": "<36s",
+        "format": "<32si",
         "name": "gfx_0",
     },
     4001: {
 
         "size": 36,
-        "format": "<36s",
+        "format": "<32si",
         "name": "gfx_1",
     },
     4002: {
 
         "size": 32,
-        "format": "<32s",
+        "format": "<32si",
         "name": "gfx_2",
     },
     4003: {
@@ -1940,7 +1940,7 @@ CMD_MAP = {
     4004: {
 
         "size": 36,
-        "format": "<36s",
+        "format": "<32si",
         "name": "command_4004",
     },
     4006: {
@@ -2072,7 +2072,7 @@ CMD_MAP = {
     4045: {
 
         "size": 36,
-        "format": "<36s",
+        "format": "<32si",
         "name": "command_4045",
     },
     4046: {
@@ -3152,7 +3152,7 @@ CMD_MAP = {
     11032: {
 
         "size": 16,
-        "format": "<16s",
+        "format": "<iiii",
         "name": "command_11032",
     },
     11033: {
@@ -4785,7 +4785,7 @@ CMD_MAP = {
     15025: {
 
         "size": 20,
-        "format": "<20s",
+        "format": "<iiiii",
         "name": "command_15025",
     },
     15026: {
@@ -5277,7 +5277,7 @@ CMD_MAP = {
     21012: {
 
         "size": 36,
-        "format": "<36s",
+        "format": "<32si",
         "name": "command_21012",
     },
     21013: {
