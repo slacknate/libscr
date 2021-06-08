@@ -331,7 +331,7 @@ def _parse_tokens(tokens):
         size = command_info["size"]
 
         if struct.calcsize(fmt) != size:
-            raise ValueError("Data size mismatch!")
+            raise ValueError(f"Data size mismatch ({command_id}): {fmt} - {size}")
 
         command_args = _unpack_command_args(fmt, command_args)
 
