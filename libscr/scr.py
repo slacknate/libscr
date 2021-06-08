@@ -226,9 +226,9 @@ def _handle_function_def(command_id, command_args):
     """
     Create a function def AST node.
     """
-    if command_id in (0,):
+    if command_id in (CMD_START_STATE,):
         func_type_cls = ast.AsyncFunctionDef
-    elif command_id in (8,):
+    elif command_id in (CMD_START_SUBROUTINE,):
         func_type_cls = ast.FunctionDef
     else:
         raise ValueError(f"Unknown function def type: command ID {command_id}")
@@ -250,8 +250,8 @@ def _handle_if_stmt(command_id, command_args):
     slot_name = SLOTS.get(command_args[1], f"SLOT_UNKNOWN_{command_args[1]}")
     cond_expr = ast.Name(slot_name)
 
-    # Command ID 54 is "If Not" so we invert the boolean result of the condition.
-    if command_id in (54,):
+    # Invert the boolean result of the condition for `CMD_IF_NOT`.
+    if command_id in (CMD_IF_NOT,):
         cond_expr = ast.UnaryOp(ast.Not(), cond_expr)
 
     if_stmt = ast.If(
@@ -293,9 +293,9 @@ def _handle_binary_op(command_id, command_args):
 
     op_cls = OPERATOR_CODES[operator_code]
 
-    if command_id in (40,):
+    if command_id in (CMD_OP,):
         op_expr = ast.Expr(ast.Compare(lval, [op_cls()], [rval]))
-    elif command_id in (49,):
+    elif command_id in (CMD_ASSIGN_VALUE,):
         op_expr = ast.Assign([lval], ast.BinOp(lval, op_cls(), rval))
     else:
         raise ValueError(f"Unknown binary operator: command ID {command_id}")
@@ -354,26 +354,26 @@ def _parse_tokens(tokens):
 
         command_args = _unpack_command_args(fmt, command_args)
 
-        if command_id in (0, 8):
+        if command_id in (CMD_START_STATE, CMD_START_SUBROUTINE):
             func_def = _handle_function_def(command_id, command_args)
             ast_stack[-1].append(func_def)
             ast_stack.append(func_def.body)
 
-        elif command_id in (3,):
+        elif command_id in (CMD_YIELD_CONTROL,):
             args = [repr(arg) for arg in command_args]
             await_stmt = make_func_call(command_info["name"], args, statement=True, aio=True)
             ast_stack[-1].append(await_stmt)
 
-        elif command_id in (4, 54):
+        elif command_id in (CMD_IF, CMD_IF_NOT):
             if_stmt = _handle_if_stmt(command_id, command_args)
             ast_stack[-1].append(if_stmt)
             ast_stack.append(if_stmt.body)
 
-        elif command_id in (56,):
+        elif command_id in (CMD_ELSE,):
             ifnode = ast_stack[-1][-1]
             ast_stack.append(ifnode.orelse)
 
-        elif command_id in (18,):
+        elif command_id in (CMD_GOTO_LABEL_COND,):
             args = [repr(arg) for arg in command_args]
             func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
             ast_stack[-1].append(func_call)
@@ -390,25 +390,25 @@ def _parse_tokens(tokens):
             ast_stack[-1].append(func_def)
             ast_stack.append(func_def.body)
 
-        elif command_id in (1, 5, 9, 16, 55, 57):
+        elif command_id in (CMD_END_STATE, CMD_END_IF, CMD_END_SUBROUTINE, 16, CMD_END_IF_NOT, CMD_END_ELSE):
             node_body = ast_stack.pop()
             # If any node that features an indented code block has an empty body we should populate it with a `pass`.
             if not node_body:
                 node_body.append(ast.Pass())
 
-        elif command_id in (40, 49):
+        elif command_id in (CMD_OP, CMD_ASSIGN_VALUE):
             op_expr = _handle_binary_op(command_id, command_args)
             ast_stack[-1].append(op_expr)
 
-        elif command_id in (41,):
+        elif command_id in (CMD_STORE_VALUE,):
             assign_expr = _handle_assign(command_args)
             ast_stack[-1].append(assign_expr)
 
-        elif command_id in (14001,):
+        elif command_id in (CMD_MOVE_REGISTER,):
             func_call = _handle_move_reg(command_info, command_args)
             ast_stack[-1].append(func_call)
 
-        elif command_id in (14012,):
+        elif command_id in (CMD_MOVE_INPUT,):
             args = [INPUT_CODES.get(command_args[0], f"INPUT_UNKNOWN_{command_args[0]}")]
             func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
             ast_stack[-1].append(func_call)

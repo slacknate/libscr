@@ -1,5 +1,25 @@
 __all__ = [
 
+    # Command ID constants
+    "CMD_START_STATE",
+    "CMD_END_STATE",
+    "CMD_YIELD_CONTROL",
+    "CMD_IF",
+    "CMD_END_IF",
+    "CMD_START_SUBROUTINE",
+    "CMD_END_SUBROUTINE",
+    "CMD_GOTO_LABEL_COND",
+    "CMD_OP",
+    "CMD_STORE_VALUE",
+    "CMD_ASSIGN_VALUE",
+    "CMD_IF_NOT",
+    "CMD_END_IF_NOT",
+    "CMD_ELSE",
+    "CMD_END_ELSE",
+    "CMD_MOVE_REGISTER",
+    "CMD_MOVE_INPUT",
+
+    # Function to get the next command from a script file
     "get_command",
 ]
 
@@ -7,17 +27,35 @@ import struct
 
 from .const import *
 
+CMD_START_STATE = 0
+CMD_END_STATE = 1
+CMD_YIELD_CONTROL = 3
+CMD_IF = 4
+CMD_END_IF = 5
+CMD_START_SUBROUTINE = 8
+CMD_END_SUBROUTINE = 9
+CMD_GOTO_LABEL_COND = 18
+CMD_OP = 40
+CMD_STORE_VALUE = 41
+CMD_ASSIGN_VALUE = 49
+CMD_IF_NOT = 54
+CMD_END_IF_NOT = 55
+CMD_ELSE = 56
+CMD_END_ELSE = 57
+CMD_MOVE_REGISTER = 14001
+CMD_MOVE_INPUT = 14012
+
 # Script command information map.
 # Reference: https://github.com/dantarion/bbtools/blob/master/static_db/bbcf/commandsDB.json
 CMD_MAP = {
 
-    0: {
+    CMD_START_STATE: {
 
         "size": 32,
         "format": "<32s",
         "name": "start_state",
     },
-    1: {
+    CMD_END_STATE: {
 
         "size": 0,
         "format": "<",
@@ -29,19 +67,19 @@ CMD_MAP = {
         "format": "<32si",
         "name": "sprite",
     },
-    3: {
+    CMD_YIELD_CONTROL: {
 
         "size": 0,
         "format": "<",
         "name": "yield_control",
     },
-    4: {
+    CMD_IF: {
 
         "size": 8,
         "format": "<ii",
         "name": "if",
     },
-    5: {
+    CMD_END_IF: {
 
         "size": 0,
         "format": "<",
@@ -59,13 +97,13 @@ CMD_MAP = {
         "format": "<i",
         "name": "goto_label",
     },
-    8: {
+    CMD_START_SUBROUTINE: {
 
         "size": 32,
         "format": "<32s",
         "name": "start_subroutine",
     },
-    9: {
+    CMD_END_SUBROUTINE: {
 
         "size": 0,
         "format": "<",
@@ -119,7 +157,7 @@ CMD_MAP = {
         "format": "<i",
         "name": "clear_upon_handler",
     },
-    18: {
+    CMD_GOTO_LABEL_COND: {
 
         "size": 12,
         "format": "<iii",
@@ -227,13 +265,13 @@ CMD_MAP = {
         "format": "<iii",
         "name": "random",
     },
-    40: {
+    CMD_OP: {
 
         "size": 20,
         "format": "<iiiii",
         "name": "op",
     },
-    41: {
+    CMD_STORE_VALUE: {
 
         "size": 16,
         "format": "<iiii",
@@ -281,11 +319,11 @@ CMD_MAP = {
         "format": "<24s",
         "name": "command_48",
     },
-    49: {
+    CMD_ASSIGN_VALUE: {
 
         "size": 20,
         "format": "<iiiii",
-        "name": "modify_var",
+        "name": "assign_value",
     },
     50: {
 
@@ -311,25 +349,25 @@ CMD_MAP = {
         "format": "<i",
         "name": "command_53",
     },
-    54: {
+    CMD_IF_NOT: {
 
         "size": 8,
         "format": "<ii",
         "name": "if_not",
     },
-    55: {
+    CMD_END_IF_NOT: {
 
         "size": 0,
         "format": "<",
         "name": "end_if_not",
     },
-    56: {
+    CMD_ELSE: {
 
         "size": 0,
         "format": "<",
         "name": "else",
     },
-    57: {
+    CMD_END_ELSE: {
 
         "size": 0,
         "format": "<",
@@ -4253,7 +4291,7 @@ CMD_MAP = {
         "format": "<",
         "name": "command_14000",
     },
-    14001: {
+    CMD_MOVE_REGISTER: {
 
         "size": 36,
         "format": "<32si",
@@ -4319,7 +4357,7 @@ CMD_MAP = {
         "format": "<i",
         "name": "command_14011",
     },
-    14012: {
+    CMD_MOVE_INPUT: {
 
         "size": 4,
         "format": "<i",
