@@ -1928,7 +1928,7 @@ CMD_MAP = {
     4002: {
 
         "size": 32,
-        "format": "<32si",
+        "format": "<32s",
         "name": "gfx_2",
     },
     4003: {
