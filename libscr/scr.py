@@ -226,7 +226,13 @@ def _handle_function_def(command_id, command_args):
     """
     Create a function def AST node.
     """
-    func_type_cls = ast.AsyncFunctionDef if command_id == 0 else ast.FunctionDef
+    if command_id in (0,):
+        func_type_cls = ast.AsyncFunctionDef
+    elif command_id in (8,):
+        func_type_cls = ast.FunctionDef
+    else:
+        raise ValueError(f"Unknown function def type: command ID {command_id}")
+
     func_def = func_type_cls(
 
         command_args[0],
