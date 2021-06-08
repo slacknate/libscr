@@ -258,6 +258,20 @@ def _handle_if_stmt(command_id, command_args):
     return if_stmt
 
 
+def _get_slot_or_literal(val_type, value):
+    """
+    Create an AST node for either a literal value or a SLOT_* constant value.
+    """
+    if val_type == SLOT_TYPE_ID:
+        slot_name = SLOTS.get(value, f"SLOT_UNKNOWN_{value}")
+        value = ast.Name(slot_name)
+
+    else:
+        value = ast.Constant(value)
+
+    return value
+
+
 def _handle_binary_op(command_id, command_args):
     """
     Create a binary operator AST node.
@@ -268,17 +282,8 @@ def _handle_binary_op(command_id, command_args):
     rval_type = command_args[3]
     rval = command_args[4]
 
-    if lval_type == SLOT_TYPE_ID:
-        slot_name = SLOTS.get(lval, f"SLOT_UNKNOWN_{lval}")
-        lval = ast.Name(slot_name)
-    else:
-        lval = ast.Num(lval)
-
-    if rval_type == SLOT_TYPE_ID:
-        slot_name = SLOTS.get(rval, f"SLOT_UNKNOWN_{rval}")
-        rval = ast.Name(slot_name)
-    else:
-        rval = ast.Num(rval)
+    lval = _get_slot_or_literal(lval_type, lval)
+    rval = _get_slot_or_literal(rval_type, rval)
 
     op_cls = OPERATOR_CODES[operator_code]
 
@@ -301,17 +306,8 @@ def _handle_assign(command_args):
     rval_type = command_args[2]
     rval = command_args[3]
 
-    if lval_type == SLOT_TYPE_ID:
-        slot_name = SLOTS.get(lval, f"SLOT_UNKNOWN_{lval}")
-        lval = ast.Name(slot_name)
-    else:
-        lval = ast.Num(lval)
-
-    if rval_type == SLOT_TYPE_ID:
-        slot_name = SLOTS.get(rval, f"SLOT_UNKNOWN_{rval}")
-        rval = ast.Name(slot_name)
-    else:
-        rval = ast.Num(rval)
+    lval = _get_slot_or_literal(lval_type, lval)
+    rval = _get_slot_or_literal(rval_type, rval)
 
     return ast.Assign([lval], rval)
 
