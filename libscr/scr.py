@@ -318,6 +318,23 @@ def _handle_assign(command_args):
     return ast.Assign([lval], rval)
 
 
+def _handle_move_reg(command_info, command_args):
+    """
+    Create a function call AST node to represent the beginning of a move definition.
+    """
+    move_name = command_args[0]
+    move_data = command_args[1]
+
+    move_data_arg = MOVE_TYPES.get(move_data, None)
+    if move_data_arg is None:
+        direction_byte = move_data & 0x00FF
+        button_byte = (move_data & 0xFF00) >> 8
+        move_data_arg = INPUT_NORMAL_DIRECTION_BYTE[direction_byte] + INPUT_NORMAL_BUTTON_BYTE[button_byte]
+
+    args = [repr(move_name), move_data_arg]
+    return make_func_call(command_info["name"], args, statement=True, aio=False)
+
+
 def _parse_tokens(tokens):
     """
     Parse the script tokens into a Python AST so we can later
@@ -388,17 +405,7 @@ def _parse_tokens(tokens):
             ast_stack[-1].append(assign_expr)
 
         elif command_id in (14001,):
-            move_name = command_args[0]
-            move_data = command_args[1]
-
-            move_data_arg = MOVE_TYPES.get(move_data, None)
-            if move_data_arg is None:
-                direction_byte = move_data & 0x00FF
-                button_byte = (move_data & 0xFF00) >> 8
-                move_data_arg = INPUT_NORMAL_DIRECTION_BYTE[direction_byte] + INPUT_NORMAL_BUTTON_BYTE[button_byte]
-
-            args = [repr(move_name), move_data_arg]
-            func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
+            func_call = _handle_move_reg(command_info, command_args)
             ast_stack[-1].append(func_call)
 
         elif command_id in (14012,):
