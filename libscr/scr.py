@@ -428,5 +428,6 @@ def parse_script(scr_path, py_output=None):
     tokens = _parse_script(scr_contents, len(functions))
     root_node = _parse_tokens(tokens)
 
+    source = astor.to_source(root_node)
     with output_script(py_output) as py_fp:
-        py_fp.write(astor.to_source(root_node))
+        py_fp.write(source)
