@@ -3,6 +3,7 @@ __all__ = [
     # Command ID constants
     "CMD_START_STATE",
     "CMD_END_STATE",
+    "CMD_SPRITE",
     "CMD_YIELD_CONTROL",
     "CMD_IF",
     "CMD_END_IF",
@@ -29,6 +30,7 @@ from .const import *
 
 CMD_START_STATE = 0
 CMD_END_STATE = 1
+CMD_SPRITE = 2
 CMD_YIELD_CONTROL = 3
 CMD_IF = 4
 CMD_END_IF = 5
@@ -61,7 +63,7 @@ CMD_MAP = {
         "format": "<",
         "name": "end_state",
     },
-    2: {
+    CMD_SPRITE: {
 
         "size": 36,
         "format": "<32si",
