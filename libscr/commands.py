@@ -9,6 +9,8 @@ __all__ = [
     "CMD_END_IF",
     "CMD_START_SUBROUTINE",
     "CMD_END_SUBROUTINE",
+    "CMD_UPON",
+    "CMD_END_UPON",
     "CMD_GOTO_LABEL_COND",
     "CMD_OP",
     "CMD_STORE_VALUE",
@@ -36,6 +38,8 @@ CMD_IF = 4
 CMD_END_IF = 5
 CMD_START_SUBROUTINE = 8
 CMD_END_SUBROUTINE = 9
+CMD_UPON = 15
+CMD_END_UPON = 16
 CMD_GOTO_LABEL_COND = 18
 CMD_OP = 40
 CMD_STORE_VALUE = 41
@@ -141,13 +145,13 @@ CMD_MAP = {
         "format": "<",
         "name": "command_14",
     },
-    15: {
+    CMD_UPON: {
 
         "size": 4,
         "format": "<i",
         "name": "upon",
     },
-    16: {
+    CMD_END_UPON: {
 
         "size": 0,
         "format": "<",
