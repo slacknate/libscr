@@ -1,10 +1,10 @@
 import io
 import ast
+import json
+import base64
 import struct
 import contextlib
 import collections
-
-import astor
 
 from .symbols import *
 from .commands import *
@@ -114,6 +114,35 @@ UPON = {
     10: "on_hit_or_block",
 }
 
+COMMAND_HAS_BODY = (CMD_START_STATE, CMD_START_SUBROUTINE, CMD_IF, CMD_IF_NOT, CMD_ELSE, 15)
+COMMAND_BODY_END = (CMD_END_STATE, CMD_END_IF, CMD_END_SUBROUTINE, CMD_END_IF_NOT, CMD_END_ELSE, 16)
+
+
+class AstNode:
+    def __init__(self, has_body=False):
+        self.body = [] if has_body else None
+
+    def to_json(self):
+        return [node.to_json() for node in self.body]
+
+
+class ScrNode(AstNode):
+    def __init__(self, cmd_name, cmd_id, cmd_args, has_body=False):
+        AstNode.__init__(self, has_body)
+        self.cmd_name = cmd_name
+        self.cmd_args = cmd_args
+        self.cmd_id = cmd_id
+
+    def to_json(self):
+        cmd_args = list(self.cmd_args)
+
+        for index, arg in enumerate(cmd_args):
+            if isinstance(arg, bytes):
+                cmd_args[index] = base64.b64encode(arg).decode("UTF-8")
+
+        return {"cmd_name": self.cmd_name, "cmd_id": self.cmd_id,
+                "cmd_args": cmd_args, "body": [node.to_json() for node in self.body]}
+
 
 def is_ascii_str(bytes_value):
     """
@@ -131,37 +160,20 @@ def bytes_to_str(bytes_value):
 
 
 @contextlib.contextmanager
-def output_script(py_output):
+def output_file(ast_output):
     """
     Helper context manager that either wraps `open()` or simply yields an `io.BytesIO`.
     Also provides basic type validation.
     """
-    if isinstance(py_output, str):
-        with open(py_output, "w") as hpl_fp:
-            yield hpl_fp
+    if isinstance(ast_output, str):
+        with open(ast_output, "w") as ast_fp:
+            yield ast_fp
 
-    elif isinstance(py_output, io.BytesIO):
-        yield py_output
+    elif isinstance(ast_output, io.BytesIO):
+        yield ast_output
 
     else:
-        raise TypeError(f"Unsupported output script type {py_output}!")
-
-
-def make_func_call(name, args, statement: bool, aio: bool):
-    """
-    Apparently ast.Expr and ast.Expression are used for different things.
-    We use ast.Expr for an expressiong statement, and ast.Expression for other
-    expressions, like the condition of an `if` statement.
-    The ast.Call class exists but its an ast.expr which is something else?
-    And it doesn't seem to work right with astor? Why is this is so weird??
-    """
-    expr_str = f"{name}({', '.join(args)})"
-    if aio:
-        expr_str = "await " + expr_str
-
-    expression_value = ast.Name(id=expr_str)
-    expr_cls = ast.Expr if statement else ast.Expression
-    return expr_cls(expression_value)
+        raise TypeError(f"Unsupported output type {ast_output}!")
 
 
 def _parse_header(scr_contents):
@@ -222,125 +234,12 @@ def _unpack_command_args(fmt, command_args):
     return command_args
 
 
-def _handle_function_def(command_id, command_args):
-    """
-    Create a function def AST node.
-    """
-    if command_id in (CMD_START_STATE,):
-        func_type_cls = ast.AsyncFunctionDef
-    elif command_id in (CMD_START_SUBROUTINE,):
-        func_type_cls = ast.FunctionDef
-    else:
-        raise ValueError(f"Unknown function def type: command ID {command_id}")
-
-    func_def = func_type_cls(
-
-        command_args[0],
-        ast.arguments([], [], None, None, [], None, []),
-        [],
-        []
-    )
-    return func_def
-
-
-def _handle_if_stmt(command_id, command_args):
-    """
-    Create a if statement AST node.
-    """
-    slot_name = SLOTS.get(command_args[1], f"SLOT_UNKNOWN_{command_args[1]}")
-    cond_expr = ast.Name(slot_name)
-
-    # Invert the boolean result of the condition for `CMD_IF_NOT`.
-    if command_id in (CMD_IF_NOT,):
-        cond_expr = ast.UnaryOp(ast.Not(), cond_expr)
-
-    if_stmt = ast.If(
-
-        cond_expr,
-        [],
-        []
-    )
-
-    return if_stmt
-
-
-def _get_slot_or_literal(val_type, value):
-    """
-    Create an AST node for either a literal value or a SLOT_* constant value.
-    """
-    if val_type == SLOT_TYPE_ID:
-        slot_name = SLOTS.get(value, f"SLOT_UNKNOWN_{value}")
-        value = ast.Name(slot_name)
-
-    else:
-        value = ast.Constant(value)
-
-    return value
-
-
-def _handle_binary_op(command_id, command_args):
-    """
-    Create a binary operator AST node.
-    """
-    operator_code = command_args[0]
-    lval_type = command_args[1]
-    lval = command_args[2]
-    rval_type = command_args[3]
-    rval = command_args[4]
-
-    lval = _get_slot_or_literal(lval_type, lval)
-    rval = _get_slot_or_literal(rval_type, rval)
-
-    op_cls = OPERATOR_CODES[operator_code]
-
-    if command_id in (CMD_OP,):
-        op_expr = ast.Expr(ast.Compare(lval, [op_cls()], [rval]))
-    elif command_id in (CMD_ASSIGN_VALUE,):
-        op_expr = ast.Assign([lval], ast.BinOp(lval, op_cls(), rval))
-    else:
-        raise ValueError(f"Unknown binary operator: command ID {command_id}")
-
-    return op_expr
-
-
-def _handle_assign(command_args):
-    """
-    Create an assignment expression AST node.
-    """
-    lval_type = command_args[0]
-    lval = command_args[1]
-    rval_type = command_args[2]
-    rval = command_args[3]
-
-    lval = _get_slot_or_literal(lval_type, lval)
-    rval = _get_slot_or_literal(rval_type, rval)
-
-    return ast.Assign([lval], rval)
-
-
-def _handle_move_reg(command_info, command_args):
-    """
-    Create a function call AST node to represent the beginning of a move definition.
-    """
-    move_name = command_args[0]
-    move_data = command_args[1]
-
-    move_data_arg = MOVE_TYPES.get(move_data, None)
-    if move_data_arg is None:
-        direction_byte = move_data & 0x00FF
-        button_byte = (move_data & 0xFF00) >> 8
-        move_data_arg = INPUT_NORMAL_DIRECTION_BYTE[direction_byte] + INPUT_NORMAL_BUTTON_BYTE[button_byte]
-
-    args = [repr(move_name), move_data_arg]
-    return make_func_call(command_info["name"], args, statement=True, aio=False)
-
-
 def _parse_tokens(tokens):
     """
-    Parse the script tokens into a Python AST so we can later
-    attempt to edit the script in as human-readable a form as possible.
+    Parse the script tokens into an AST so we can later
+    attempt to use the script data, or edit said data, in as human-readable a form as possible.
     """
-    root_node = ast.Module(body=[ast.ImportFrom("libscr.symbols", [ast.Name("*")], 0)])
+    root_node = AstNode(has_body=True)
 
     ast_stack = collections.deque()
     ast_stack.append(root_node.body)
@@ -353,75 +252,22 @@ def _parse_tokens(tokens):
             raise ValueError(f"Data size mismatch ({command_id}): {fmt} - {size}")
 
         command_args = _unpack_command_args(fmt, command_args)
+        node = ScrNode(command_info["name"], command_id, command_args, has_body=True)
 
-        if command_id in (CMD_START_STATE, CMD_START_SUBROUTINE):
-            func_def = _handle_function_def(command_id, command_args)
-            ast_stack[-1].append(func_def)
-            ast_stack.append(func_def.body)
+        if command_id in COMMAND_HAS_BODY:
+            ast_stack[-1].append(node)
+            ast_stack.append(node.body)
 
-        elif command_id in (CMD_YIELD_CONTROL,):
-            args = [repr(arg) for arg in command_args]
-            await_stmt = make_func_call(command_info["name"], args, statement=True, aio=True)
-            ast_stack[-1].append(await_stmt)
-
-        elif command_id in (CMD_IF, CMD_IF_NOT):
-            if_stmt = _handle_if_stmt(command_id, command_args)
-            ast_stack[-1].append(if_stmt)
-            ast_stack.append(if_stmt.body)
-
-        elif command_id in (CMD_ELSE,):
-            ifnode = ast_stack[-1][-1]
-            ast_stack.append(ifnode.orelse)
-
-        elif command_id in (CMD_GOTO_LABEL_COND,):
-            args = [repr(arg) for arg in command_args]
-            func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
-            ast_stack[-1].append(func_call)
-
-        elif command_id in (15,):  # TODO: pretty sure theres more work to be done here...
-            upon_type = UPON.get(command_args[0], f"UNKNOWN_UPON_{command_args[0]}")
-            func_def = ast.FunctionDef(
-
-                "upon_" + upon_type,
-                ast.arguments([], [], None, None, [], None, []),
-                [],
-                []
-            )
-            ast_stack[-1].append(func_def)
-            ast_stack.append(func_def.body)
-
-        elif command_id in (CMD_END_STATE, CMD_END_IF, CMD_END_SUBROUTINE, 16, CMD_END_IF_NOT, CMD_END_ELSE):
-            node_body = ast_stack.pop()
-            # If any node that features an indented code block has an empty body we should populate it with a `pass`.
-            if not node_body:
-                node_body.append(ast.Pass())
-
-        elif command_id in (CMD_OP, CMD_ASSIGN_VALUE):
-            op_expr = _handle_binary_op(command_id, command_args)
-            ast_stack[-1].append(op_expr)
-
-        elif command_id in (CMD_STORE_VALUE,):
-            assign_expr = _handle_assign(command_args)
-            ast_stack[-1].append(assign_expr)
-
-        elif command_id in (CMD_MOVE_REGISTER,):
-            func_call = _handle_move_reg(command_info, command_args)
-            ast_stack[-1].append(func_call)
-
-        elif command_id in (CMD_MOVE_INPUT,):
-            args = [INPUT_CODES.get(command_args[0], f"INPUT_UNKNOWN_{command_args[0]}")]
-            func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
-            ast_stack[-1].append(func_call)
+        elif command_id in COMMAND_BODY_END:
+            ast_stack.pop()
 
         else:
-            args = [repr(arg) for arg in command_args]
-            func_call = make_func_call(command_info["name"], args, statement=True, aio=False)
-            ast_stack[-1].append(func_call)
+            ast_stack[-1].append(node)
 
     return root_node
 
 
-def parse_script(scr_path, py_output=None):
+def parse_script(scr_path, ast_output=None):
     """
     ???.
 
@@ -430,13 +276,12 @@ def parse_script(scr_path, py_output=None):
     with open(scr_path, "rb") as scr_fp:
         scr_contents = scr_fp.read()
 
-    if py_output is None:
-        py_output = scr_path.replace(".bin", ".py")
+    if ast_output is None:
+        ast_output = scr_path.replace(".bin", ".json")
 
     functions = _parse_header(scr_contents)
     tokens = _parse_script(scr_contents, len(functions))
     root_node = _parse_tokens(tokens)
 
-    source = astor.to_source(root_node)
-    with output_script(py_output) as py_fp:
-        py_fp.write(source)
+    with output_file(ast_output) as json_fp:
+        json.dump(root_node.to_json(), json_fp, indent=4)
