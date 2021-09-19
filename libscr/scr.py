@@ -1,5 +1,4 @@
 import io
-import ast
 import json
 import base64
 import struct
@@ -77,21 +76,6 @@ MOVE_TYPES = {
     1539: "MOVE_TYPE_UNKNOWN_1539",
     1540: "MOVE_TYPE_UNKNOWN_1540",
     1541: "MOVE_TYPE_UNKNOWN_1541",
-}
-
-OPERATOR_CODES = {
-
-    0: ast.Add,
-    1: ast.Sub,
-    2: ast.Mult,
-    3: ast.Div,
-    9: ast.Eq,
-    10: ast.Gt,
-    11: ast.Lt,
-    12: ast.GtE,
-    13: ast.LtE,
-    15: ast.And,  # FIXME: this is def wrong
-    16: ast.Or,  # FIXME: this is def wrong
 }
 
 SLOTS = {
