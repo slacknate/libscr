@@ -239,6 +239,11 @@ def _parse_tokens(tokens):
         node = ScrNode(command_info["name"], command_id, command_args, has_body=True)
 
         if command_id in COMMAND_HAS_BODY:
+            # FIXME: parser is sometimes popping out the root node. this is definitely a bug, but
+            #        for now as a stop-gap we just re-append the root if the stack is empty.
+            if not ast_stack:
+                ast_stack.append(root_node.body)
+
             ast_stack[-1].append(node)
             ast_stack.append(node.body)
 
