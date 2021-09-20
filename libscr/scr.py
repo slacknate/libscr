@@ -258,7 +258,7 @@ def _parse_tokens(tokens):
 
 def parse_script(scr_path, ast_output=None):
     """
-    ???.
+    Parse a BlazBlue script file and render the tokens as a JSON document.
 
     Reference: https://github.com/dantarion/bbtools/blob/master/bbcf_bbtag_script_parser.py
     """
