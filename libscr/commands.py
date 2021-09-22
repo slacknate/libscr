@@ -20,6 +20,7 @@ __all__ = [
     "CMD_ELSE",
     "CMD_END_ELSE",
     "CMD_MOVE_REGISTER",
+    "CMD_MOVE_END_REGISTER",
     "CMD_MOVE_INPUT",
 
     # Function to get the next command from a script file
@@ -49,6 +50,7 @@ CMD_END_IF_NOT = 55
 CMD_ELSE = 56
 CMD_END_ELSE = 57
 CMD_MOVE_REGISTER = 14001
+CMD_MOVE_END_REGISTER = 14002
 CMD_MOVE_INPUT = 14012
 
 # Script command information map.
@@ -4303,7 +4305,7 @@ CMD_MAP = {
         "format": "<32si",
         "name": "move_register",
     },
-    14002: {
+    CMD_MOVE_END_REGISTER: {
 
         "size": 0,
         "format": "<",
