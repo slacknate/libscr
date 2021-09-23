@@ -13,26 +13,31 @@ ASCII_RANGE = frozenset(list(range(20, 127)) + [0])
 
 SLOT_TYPE_ID = 2
 
-INPUT_CODES = {
+MOTION_CODES = {
 
-    INPUT_RELEASE_A: "INPUT_RELEASE_A",
-    INPUT_PRESS_A: "INPUT_PRESS_A",
-    INPUT_RELEASE_B: "INPUT_RELEASE_B",
-    INPUT_PRESS_B: "INPUT_PRESS_B",
-    INPUT_RELEASE_C: "INPUT_RELEASE_C",
-    INPUT_PRESS_C: "INPUT_PRESS_C",
-    INPUT_RELEASE_D: "INPUT_RELEASE_D",
-    INPUT_PRESS_D: "INPUT_PRESS_D",
-    INPUT_236: "INPUT_236",
-    INPUT_623: "INPUT_623",
-    INPUT_214: "INPUT_214",
-    INPUT_41236: "INPUT_41236",
-    INPUT_63214: "INPUT_63214",
-    INPUT_22: "INPUT_22",
-    INPUT_2HOLD8: "INPUT_2HOLD8",
-    INPUT_236236: "INPUT_236236",
-    INPUT_214214: "INPUT_214214",
-    INPUT_632146: "INPUT_632146",
+    MOTION_6: "6",
+    MOTION_236: "236",
+    MOTION_623: "623",
+    MOTION_214: "214",
+    MOTION_41236: "41236",
+    MOTION_63214: "63214",
+    MOTION_22: "22",
+    MOTION_2HOLD8: "2HOLD8",
+    MOTION_236236: "236236",
+    MOTION_214214: "214214",
+    MOTION_632146: "632146",
+}
+
+SPECIAL_CODES = {
+
+    SPECIAL_RELEASE_A: "A",
+    SPECIAL_PRESS_A: "A",
+    SPECIAL_RELEASE_B: "B",
+    SPECIAL_PRESS_B: "B",
+    SPECIAL_RELEASE_C: "C",
+    SPECIAL_PRESS_C: "C",
+    SPECIAL_RELEASE_D: "D",
+    SPECIAL_PRESS_D: "D",
 }
 
 INPUT_NORMAL_BUTTON_BYTE = {
@@ -45,24 +50,24 @@ INPUT_NORMAL_BUTTON_BYTE = {
 
 INPUT_NORMAL_DIRECTION_BYTE = {
 
-    0: "INPUT_1",
-    1: "INPUT_2",
-    2: "INPUT_3",
-    3: "INPUT_4",
-    4: "INPUT_5",
-    5: "INPUT_6",
-    6: "INPUT_7",
-    7: "INPUT_8",
-    8: "INPUT_9",
-    9: "INPUT_J1",
-    10: "INPUT_J2",
-    11: "INPUT_J3",
-    12: "INPUT_J4",
-    13: "INPUT_J5",
-    14: "INPUT_J6",
-    15: "INPUT_J7",
-    16: "INPUT_J8",
-    17: "INPUT_J9"
+    0: "1",
+    1: "2",
+    2: "3",
+    3: "4",
+    4: "5",
+    5: "6",
+    6: "7",
+    7: "8",
+    8: "9",
+    9: "J1",
+    10: "J2",
+    11: "J3",
+    12: "J4",
+    13: "J5",
+    14: "J6",
+    15: "J7",
+    16: "J8",
+    17: "J9"
 }
 
 MOVE_TYPES = {
@@ -126,6 +131,30 @@ class ScrNode(AstNode):
 
         return {"cmd_name": self.cmd_name, "cmd_id": self.cmd_id,
                 "cmd_args": cmd_args, "body": [node.to_json() for node in self.body]}
+
+
+def get_normal_input_str(move_value):
+    """
+    Get a human readable string representation of a normal move input.
+    """
+    direction_byte = move_value & 0x00FF
+    button_byte = (move_value & 0xFF00) >> 8
+
+    direction = INPUT_NORMAL_DIRECTION_BYTE[direction_byte]
+    button = INPUT_NORMAL_BUTTON_BYTE[button_byte]
+
+    return direction + button
+
+
+def get_special_input_str(motion_value, button_value):
+    """
+    Get a human readable string representation of a special move input.
+    This is also used for distortions/astrals.
+    """
+    motion = MOTION_CODES.get(motion_value, "")
+    button = SPECIAL_CODES[button_value]
+
+    return motion + button
 
 
 def is_ascii_str(bytes_value):
