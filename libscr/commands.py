@@ -4730,7 +4730,7 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "move_guard_overhead",
+        "name": "move_guard_high",
     },
     15009: {
 
