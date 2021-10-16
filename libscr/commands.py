@@ -4730,25 +4730,25 @@ CMD_MAP = {
 
         "size": 0,
         "format": "<",
-        "name": "move_guard_high",
+        "name": "move_attr_head",
     },
     15009: {
 
         "size": 0,
         "format": "<",
-        "name": "command_15009",
+        "name": "move_attr_foot",
     },
     15010: {
 
         "size": 0,
         "format": "<",
-        "name": "command_15010",
+        "name": "move_attr_throw",
     },
     15011: {
 
         "size": 4,
         "format": "<i",
-        "name": "command_15011",
+        "name": "command_15011",  # TODO: is this projectile attribute?
     },
     15012: {
 
