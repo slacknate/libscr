@@ -23,7 +23,9 @@ __all__ = [
     "CMD_MOVE_END_REGISTER",
     "CMD_MOVE_INPUT",
 
-    # Function to get the next command from a script file
+    # Function to get command information from the command map.
+    "get_command_info",
+    # Function to get the next command from a script file.
     "get_command",
 ]
 
@@ -7052,6 +7054,17 @@ CMD_MAP = {
 }
 
 
+def get_command_info(command_id):
+    """
+    Helper to get info about a command by ID.
+    """
+    try:
+        return CMD_MAP[command_id]
+
+    except KeyError:
+        raise RuntimeError(f"Unknown command ID: {command_id}")
+
+
 def get_command(scr_data):
     """
     Get the next command from the script.
@@ -7061,12 +7074,7 @@ def get_command(scr_data):
     command_id = struct.unpack_from("<I", scr_data)[0]
     scr_data = scr_data[INT_SIZE:]
 
-    try:
-        command_info = CMD_MAP[command_id]
-
-    except KeyError:
-        raise RuntimeError(f"Unknown command ID: {command_id}")
-
+    command_info = get_command_info(command_id)
     size = command_info["size"]
 
     command_args = scr_data[:size]
