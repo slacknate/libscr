@@ -12,6 +12,7 @@ from .const import *
 ASCII_RANGE = frozenset(list(range(20, 127)) + [0])
 
 SLOT_TYPE_ID = 2
+MATCH_INIT_SUBROUTINE = "MatchInit"
 
 MOTION_CODES = {
 
